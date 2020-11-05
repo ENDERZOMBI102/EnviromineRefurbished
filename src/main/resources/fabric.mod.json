@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "emr",
+	"name": "Enviromine Refurbished",
+	"description": "Adds more realism to Minecraft with environmental effects, physics, gases and a cave dimension.",
+	"version": "${version}",
+	"authors": [
+		"ENDERZOMBI102"
+	],
+	"contact": {
+		"homepage": "https://minecraft.curseforge.com/projects/emr",
+		"repo": "https://github.com/ENDERZOMBI102/EnviromineRefourbished",
+		"sources": "https://github.com/ENDERZOMBI102/EnviromineRefourbished",
+		"issues": "https://github.com/ENDERZOMBI102/EnviromineRefourbished/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/emr/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.enderzombi102.emr.EnviromineRefurbished"
+		],
+		"client": [
+			"com.enderzombi102.emr.EnviromineRefurbished"
+		],
+		"modmenu": [
+			"com.enderzombi102.emr.config.ModMenu"
+		]
+	},
+	"mixins": [
+		"emr.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.10.6+build.214",
+		"fabric": "*",
+		"minecraft": "1.16.3",
+		"cloth-config2": "4.8.2",
+		"autoconfig1u": "3.2.2"
+	}
+}
