@@ -2,7 +2,6 @@ package com.enderzombi102.emr.item.armor;
 
 import com.enderzombi102.emr.Content;
 import com.enderzombi102.emr.EnviromineRefurbished;
-import com.enderzombi102.emr.handler.RegistrationHandler;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 
