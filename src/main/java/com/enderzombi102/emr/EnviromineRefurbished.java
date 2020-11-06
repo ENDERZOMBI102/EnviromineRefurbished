@@ -1,20 +1,29 @@
 package com.enderzombi102.emr;
 
+import com.enderzombi102.emr.handler.RegistrationHandler;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 @EnvironmentInterface(value = EnvType.CLIENT, itf = ClientModInitializer.class)
 public class EnviromineRefurbished implements ClientModInitializer, ModInitializer {
 
-	public static final Item FABRIC_ITEM = new Item( new FabricItemSettings().group(ItemGroup.MISC) );
+	public static EnviromineRefurbished instance = null;
+	public static final ItemGroup EnviroTab = FabricItemGroupBuilder.build(
+			new Identifier("emr", "envirotab"),
+			() -> new ItemStack( Content.airMask )
+	);
+
+	public EnviromineRefurbished() {
+		instance = this;
+	}
+
 
 	@Override
 	public void onInitialize() {
-		Registry.register(Registry.ITEM, new Identifier("emr", "item"), FABRIC_ITEM);
+		RegistrationHandler.registerItems();
 	}
 
 	@Environment(EnvType.CLIENT)
