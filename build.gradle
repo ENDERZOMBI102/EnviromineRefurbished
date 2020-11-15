@@ -10,8 +10,18 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-ext {
-	imguiVersion = '1.79-1.4.0'
+repositories {
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://dl.bintray.com/ladysnake/libs'
+	}
+	maven {
+		url = "https://maven.theillusivec4.top/"
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://dl.bintray.com/ladysnake/libs'
+	}
 }
 
 dependencies {
@@ -37,6 +47,12 @@ dependencies {
 		exclude(group: 'net.fabricmc.fabric-api')
 	}
 	modImplementation 'io.github.prospector:modmenu:1.14.6+build.31'
+
+	// cardinal components
+	// Adds an implementation dependency on the entity module
+	modImplementation "io.github.onyxstudios:Cardinal-Components-API:2.7.4"
+	// curios
+	modImplementation "top.theillusivec4.curios:curios-fabric:0.0.9-1.16.3"
 }
 
 processResources {
