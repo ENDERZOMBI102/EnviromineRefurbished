@@ -2,6 +2,9 @@ package com.enderzombi102.emr;
 
 import com.enderzombi102.emr.item.ItemRottenFood;
 import com.enderzombi102.emr.item.armor.*;
+import com.enderzombi102.emr.item.bottle.ItemBadWaterBottle;
+import com.enderzombi102.emr.item.bottle.ItemColdWaterBottle;
+import com.enderzombi102.emr.item.bottle.ItemSaltWaterBottle;
 import net.minecraft.item.Item;
 
 public class Content {
@@ -13,6 +16,10 @@ public class Content {
 	public static Item hardHat = new ItemHardHat();
 	public static Item gasMask = new ItemGasMask();
 	public static Item rottenFood = new ItemRottenFood();
+	// bottles
+	public static Item badWaterBottle = new ItemBadWaterBottle();
+	public static Item coldWaterBottle = new ItemColdWaterBottle();
+	public static Item saltWaterBottle = new ItemSaltWaterBottle();
 
 
 

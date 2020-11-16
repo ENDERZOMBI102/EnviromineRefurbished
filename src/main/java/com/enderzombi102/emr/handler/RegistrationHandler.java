@@ -12,6 +12,10 @@ public class RegistrationHandler {
 		Registry.register( Registry.ITEM, "emr:hard_hat", Content.hardHat );
 		Registry.register( Registry.ITEM, "emr:gas_mask", Content.gasMask );
 		Registry.register( Registry.ITEM, "emr:rotten_food", Content.rottenFood );
+		// bottles
+		Registry.register( Registry.ITEM, "emr:bad_water_bottle", Content.badWaterBottle);
+		Registry.register( Registry.ITEM, "emr:salty_water_bottle", Content.saltWaterBottle);
+		Registry.register( Registry.ITEM, "emr:cold_water_bottle", Content.coldWaterBottle);
 	}
 
 }
