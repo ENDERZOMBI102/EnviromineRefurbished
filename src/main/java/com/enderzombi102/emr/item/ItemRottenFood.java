@@ -24,7 +24,7 @@ public class ItemRottenFood extends Item {
 						.Builder()
 						.hunger(0)
 						.saturationModifier(0.0F)
-						.statusEffect( new StatusEffectInstance(StatusEffects.HUNGER, 3), 1.0F )
+						.statusEffect( new StatusEffectInstance(StatusEffects.HUNGER, 60), 1.0F )
 						.build()
 				)
 		);
