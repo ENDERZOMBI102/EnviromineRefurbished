@@ -1,5 +1,6 @@
-package com.enderzombi102.emr.item;
+package com.enderzombi102.emr.item.bottle;
 
+import com.enderzombi102.emr.component.RegistrationHandler;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +13,8 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 public class ItemSaltWaterBottle extends Item {
+
+	protected float hydrationLevel = 11.6F;
 
 	public ItemSaltWaterBottle() {
 		super( new Settings() );
@@ -30,20 +33,26 @@ public class ItemSaltWaterBottle extends Item {
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 
+		if (! ( user instanceof PlayerEntity ) ) return stack;
+
 		if (user instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) user;
 			Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
 			serverPlayerEntity.incrementStat( Stats.USED.getOrCreateStat(this) );
 		}
 
-		if ( user instanceof PlayerEntity && !( (PlayerEntity) user ).abilities.creativeMode ) {
+		if ( !( (PlayerEntity) user ).abilities.creativeMode ) {
 			stack.decrement(1);
 		}
 
 		if (!world.isClient) {
-			user.clearStatusEffects();
+			RegistrationHandler.MagicPDT.get(user).hydration += this.hydrationLevel;
+			this.additionalEffect(stack, world, user);
 		}
 
 		return stack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : stack;
 	}
+
+
+	protected void additionalEffect(ItemStack stack, World world, LivingEntity user) {}
 }
