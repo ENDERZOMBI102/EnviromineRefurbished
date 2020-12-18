@@ -1,6 +1,5 @@
 package com.enderzombi102.emr;
 
-import com.enderzombi102.emr.advancement.Advancements;
 import com.enderzombi102.emr.handler.RegistrationHandler;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -23,7 +22,6 @@ public class EnviromineRefurbished implements ClientModInitializer, ModInitializ
 	@Override
 	public void onInitialize() {
 		RegistrationHandler.registerItems();
-		Advancements.initAdvancements();
 	}
 
 	@Environment(EnvType.CLIENT)

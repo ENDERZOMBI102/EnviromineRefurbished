@@ -2,9 +2,9 @@ package com.enderzombi102.emr.handler;
 
 import com.enderzombi102.emr.Content;
 import com.enderzombi102.emr.EnviroDamageSource;
+import com.enderzombi102.emr.advancement.Advancements;
 import com.enderzombi102.emr.component.PlayerDataTracker;
 import com.enderzombi102.emr.config.ConfigData;
-import com.enderzombi102.emr.sound.SoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -53,7 +53,10 @@ public class HandlingTheThing {
 		}
 		
 		playerData.isTargettedByTheThing = true;
-//		player.addStat(EnviroAchievements.itsPitchBlack, 1);
+
+//		if (! world.isClient) {
+//			( (ServerPlayerEntity) player ).getAdvancementTracker().grantCriterion(Advancements.itsPitchBlack, "void");
+//		}
 
 		int i = MathHelper.floor( player.getX() );
 		int j = MathHelper.floor( player.getY() );
@@ -61,13 +64,12 @@ public class HandlingTheThing {
 		
 		int darkness = playerData.thing;
 		int deathSpeed = 1;
-		
-		if ( playerData.sanity <= 50 ) {
+
+		if (playerData.sanity <= 25) {
+			deathSpeed = 3;
+		} else if ( playerData.sanity <= 50 ) {
 			deathSpeed = 2;
-			
-			if(playerData.sanity <= 25) {
-				deathSpeed = 3;
-			}
+
 		}
 		
 		if (
@@ -108,7 +110,7 @@ public class HandlingTheThing {
 			if( !world.isClient() && player instanceof ServerPlayerEntity ) {
 				( (ServerPlayerEntity) player ).networkHandler.sendPacket(
 					new PlaySoundS2CPacket(
-						Content.SOUND_THE_THING,
+						Content.SOUND_WHISPERS,
 						SoundCategory.MASTER,
 						player.getX() + rndX,
 						player.getY() + rndY,
