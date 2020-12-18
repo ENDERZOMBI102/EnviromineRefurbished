@@ -5,14 +5,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemColdWaterBottle extends ItemSaltWaterBottle {
+public class ItemHotWaterBottle extends ItemSaltWaterBottle {
 
-	public ItemColdWaterBottle() {
-		this.hydrationLevel = 21.4F;
+	public ItemHotWaterBottle() {
+		this.hydrationLevel = 19.4F;
 	}
 
 	@Override
 	protected void additionalEffect(ItemStack stack, World world, LivingEntity user) {
-		Content.PLAYER_DATA_TRACKER.get(user).bodyTemp -= 6F;
+		Content.PLAYER_DATA_TRACKER.get(user).bodyTemp += 6F;
 	}
 }

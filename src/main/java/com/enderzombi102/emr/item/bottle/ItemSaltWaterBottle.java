@@ -1,6 +1,6 @@
 package com.enderzombi102.emr.item.bottle;
 
-import com.enderzombi102.emr.component.RegistrationHandler;
+import com.enderzombi102.emr.Content;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,7 +46,7 @@ public class ItemSaltWaterBottle extends Item {
 		}
 
 		if (!world.isClient) {
-			RegistrationHandler.MagicPDT.get(user).hydration += this.hydrationLevel;
+			Content.PLAYER_DATA_TRACKER.get(user).hydration += this.hydrationLevel;
 			this.additionalEffect(stack, world, user);
 		}
 
