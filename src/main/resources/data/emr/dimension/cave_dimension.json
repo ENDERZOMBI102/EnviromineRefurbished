@@ -1,0 +1,50 @@
+{
+	"type": "emr:cave_dimension"
+	"natural": true,
+	"has_skylight": false,
+	"has_ceiling": true,
+	"ambient_light": 0.0,
+	"bed_works": true,
+	"respawn_anchor_works": false,
+	"has_raids": false,
+	"effects": "minecraft:the_end",
+	"logical_height": 256,
+	"bedrock_roof_position": 257,
+	"bedrock_floor_position": -1,
+	"sea_level": 20,
+	"infiniburn": "minecraft:infiniburn_overworld",
+	"default_block": {
+		"name": "minecraft:stone",
+		"Properties": {
+			"state": ""
+		}
+	},
+	"structures": {
+		"structures": {
+			"minecraft:buried_treasure": {
+				"spacing": 2,
+				"separation": 0,
+				"salt": 0
+			},
+			"minecraft:mineshaft": {
+				"spacing": 1,
+				"separation": 0,
+				"salt": 0
+			},
+			"minecraft:nether_fossil": {
+				"spacing": 2,
+				"separation": 1,
+				"salt": 14357921
+			}
+		}
+	},
+	"generator": {
+		"biome_source": {
+			"biome": "minecraft:stone_shore",
+			"type": "minecraft:fixed"
+		},
+		"seed": -6794152605162714065,
+		"settings": "minecraft:caves",
+		"type": "minecraft:noise"
+	}
+}
