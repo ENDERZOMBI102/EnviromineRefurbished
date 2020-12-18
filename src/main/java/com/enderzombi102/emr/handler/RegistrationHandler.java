@@ -22,7 +22,7 @@ public class RegistrationHandler {
 	}
 
 	public static void registerSounds() {
-		Registry.register( Registry.SOUND_EVENT, Content.SOUND_THE_THING_ID, Content.SOUND_THE_THING );
+		Registry.register( Registry.SOUND_EVENT, Content.SOUND_WHISPERS_ID, Content.SOUND_WHISPERS );
 	}
 
 }

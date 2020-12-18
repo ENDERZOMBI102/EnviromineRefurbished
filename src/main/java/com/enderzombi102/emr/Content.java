@@ -36,10 +36,10 @@ public class Content {
 	);
 
 	// sound indentifiers
-	public static final Identifier SOUND_THE_THING_ID = new Identifier("emr:whispers");
+	public static final Identifier SOUND_WHISPERS_ID = new Identifier("emr:whispers");
 
 	// sound events
-	public static final SoundEvent SOUND_THE_THING = new SoundEvent(SOUND_THE_THING_ID);
+	public static final SoundEvent SOUND_WHISPERS = new SoundEvent(SOUND_WHISPERS_ID);
 
 
 
