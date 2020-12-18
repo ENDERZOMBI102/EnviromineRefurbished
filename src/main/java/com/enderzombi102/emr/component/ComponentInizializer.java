@@ -6,18 +6,14 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import net.minecraft.util.Identifier;
 
-public class RegistrationHandler implements EntityComponentInitializer {
+import static com.enderzombi102.emr.Content.PLAYER_DATA_TRACKER;
 
-	public static final ComponentKey<PlayerDataTracker> MAGIK = ComponentRegistry.getOrCreate(
-			new Identifier("emr", "component.playerdatatracker"),
-			PlayerDataTracker.class
-	);
-
-
+public class ComponentInizializer implements EntityComponentInitializer {
 
 	@Override
+	@SuppressWarnings({"unchecked"})
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerForPlayers();
+		registry.registerForPlayers(PLAYER_DATA_TRACKER, PlayerDataTracker::new);
 	}
 
 }
