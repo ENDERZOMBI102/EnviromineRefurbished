@@ -22,6 +22,16 @@ repositories {
 		name = "Ladysnake Libs"
 		url = 'https://dl.bintray.com/ladysnake/libs'
 	}
+	maven {
+		url = 'https://repo.repsy.io/mvn/enderzombi102/mc/'
+	}
+	maven {
+		url = "https://jitpack.io"
+	}
+	maven {
+		name = "NerdHubMC"
+		url = "https://maven.abusedmaster.xyz/"
+	}
 }
 
 dependencies {
@@ -51,8 +61,12 @@ dependencies {
 	// cardinal components
 	// Adds an implementation dependency on the entity module
 	modImplementation "io.github.onyxstudios:Cardinal-Components-API:2.7.4"
-	// curios
-	modImplementation "top.theillusivec4.curios:curios-fabric:0.0.9-1.16.3"
+
+	// trinkes
+	modImplementation "com.github.emilyploszaj:trinkets:2.6.7"
+	
+	// enderlib
+	modImplementation "com.enderzombi102:EnderLib:1.0-SNAPSHOT"
 }
 
 processResources {

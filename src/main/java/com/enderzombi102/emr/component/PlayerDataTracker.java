@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
-import static com.enderzombi102.emr.EnviromineRefurbished.LOGGER;
 
 public class PlayerDataTracker implements IPlayerDataTracker {
 
@@ -69,14 +68,7 @@ public class PlayerDataTracker implements IPlayerDataTracker {
 	 */
 	@Override
 	public void serverTick() {
-		if( getWorld().getPlayerByUuid( this.player.getUuid() ) == null ) {
-			return;
-		}
-		if(this.bodyTemp == 20F) {
-			LOGGER.info("1t passed");
-			this.bodyTemp = 0F;
-		}
-		else this.bodyTemp += 1F;
+		// TODO: finish this
 	}
 
 	private World getWorld() {
@@ -85,7 +77,7 @@ public class PlayerDataTracker implements IPlayerDataTracker {
 
 	@Override
 	public boolean shouldSyncWith(ServerPlayerEntity player) {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -97,6 +89,7 @@ public class PlayerDataTracker implements IPlayerDataTracker {
 		tag.putFloat("hydration", this.hydration);
 		tag.putFloat("wetness", this.wetness);
 		tag.putFloat("sanity", this.sanity);
+		buf.writeCompoundTag(tag);
 	}
 
 	@Override

@@ -1,7 +1,11 @@
 {
-	"my_sound": {
+	"whispers": {
 		"sounds": [
-			"emr:whispers"
+			"emr:whispers1",
+			"emr:whispers2",
+			"emr:whispers3",
+			"emr:whispers4",
+			"emr:whispers5"
 		]
 	}
 }

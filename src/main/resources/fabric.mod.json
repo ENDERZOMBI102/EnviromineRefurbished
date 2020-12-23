@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "emr",
-	"name": "Enviromine Refurbished",
+	"name": "EnviroMine Refurbished",
 	"description": "Adds more realism to Minecraft with environmental effects, physics, gases and a cave dimension.",
 	"version": "${version}",
 	"authors": [
@@ -26,7 +26,7 @@
 		"modmenu": [
 			"com.enderzombi102.emr.config.ModMenu"
 		],
-		"cardinal-components": [
+		"cardinal-components-entity": [
 			"com.enderzombi102.emr.component.ComponentInizializer"
 		]
 	},

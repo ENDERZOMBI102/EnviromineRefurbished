@@ -4,6 +4,8 @@
 	"package": "com.enderzombi102.emr.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
+		"InGameOverlayRendererMixin",
+		"ServerPlayerEntityMixin"
 	],
 	"client": [
 	],

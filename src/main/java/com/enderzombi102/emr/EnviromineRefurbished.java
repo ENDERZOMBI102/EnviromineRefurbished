@@ -1,8 +1,11 @@
 package com.enderzombi102.emr;
 
+import com.enderzombi102.emr.client.hud.OverlayRenderer;
 import com.enderzombi102.emr.handler.RegistrationHandler;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -16,7 +19,7 @@ public class EnviromineRefurbished implements ClientModInitializer, ModInitializ
 
 	public static final ItemGroup EnviroTab = FabricItemGroupBuilder.build(
 			new Identifier("emr", "envirotab"),
-			() -> new ItemStack( Content.airMask )
+			() -> new ItemStack( Content.camelPack )
 	);
 
 	@Override
@@ -27,5 +30,6 @@ public class EnviromineRefurbished implements ClientModInitializer, ModInitializ
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void onInitializeClient() {
+		HudRenderCallback.EVENT.register( ( (matrixStack, tickDelta) -> OverlayRenderer.renderOverlays(MinecraftClient.getInstance(), matrixStack ) ) );
 	}
 }
