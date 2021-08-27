@@ -15,9 +15,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemRottenFood extends Item {
+public class RottenFoodItem extends Item {
 
-	public ItemRottenFood() {
+	public RottenFoodItem() {
 		super(
 				new FabricItemSettings().group(EnviromineRefurbished.EnviroTab).food(
 				new FoodComponent
@@ -31,20 +31,22 @@ public class ItemRottenFood extends Item {
 	}
 
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
+	public ActionResult useOnBlock(ItemUsageContext ctx) {
 		// if we're on client, just skip this
-		if (context.getWorld().isClient()) return ActionResult.PASS;
+		if ( ctx.getWorld().isClient() ) return ActionResult.PASS;
 		// variables
-		World world = context.getWorld();
-		BlockPos pos = context.getBlockPos();
+		World world = ctx.getWorld();
+		BlockPos pos = ctx.getBlockPos();
 		BlockState blockState = world.getBlockState(pos);
-		ItemStack stack = context.getPlayer().getActiveItem();
+		// return if no player
+		if ( ctx.getPlayer() == null ) return ActionResult.PASS;
+		ItemStack stack = ctx.getPlayer().getActiveItem();
 		// is it a valid block?
 		if ( blockState.getBlock() instanceof Fertilizable ) {
 			Fertilizable fertilizable = (Fertilizable) blockState.getBlock();
 			// if it can grow, let it grow!
-			if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-				fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
+			if ( fertilizable.canGrow( world, world.random, pos, blockState) ) {
+				fertilizable.grow( (ServerWorld) world, world.random, pos, blockState );
 				stack.decrement(1);
 			}
 		}

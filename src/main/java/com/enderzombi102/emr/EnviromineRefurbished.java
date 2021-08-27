@@ -1,35 +1,48 @@
 package com.enderzombi102.emr;
 
-import com.enderzombi102.emr.client.hud.OverlayRenderer;
-import com.enderzombi102.emr.handler.RegistrationHandler;
+import com.enderzombi102.emr.config.ModConfig;
+import com.enderzombi102.emr.registry.EventListeners;
+import com.enderzombi102.emr.registry.BlockEntityRegistry;
+import com.enderzombi102.emr.registry.BlockRegistry;
+import com.enderzombi102.emr.registry.ItemRegistry;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Jankson;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@EnvironmentInterface(value = EnvType.CLIENT, itf = ClientModInitializer.class)
-public class EnviromineRefurbished implements ClientModInitializer, ModInitializer {
+import static com.enderzombi102.emr.util.Const.MOD_ID;
+
+public class EnviromineRefurbished implements ModInitializer {
 
 	public static final Logger LOGGER = LogManager.getLogger("EMR");
+	public static final Jankson JANKSON = new Jankson.Builder().build();
 
 	public static final ItemGroup EnviroTab = FabricItemGroupBuilder.build(
-			new Identifier("emr", "envirotab"),
-			() -> new ItemStack( Content.camelPack )
+			getID("envirotab"),
+			() -> new ItemStack( ItemRegistry.get("camel_pack") )
 	);
 
 	@Override
 	public void onInitialize() {
-		RegistrationHandler.registerItems();
+		AutoConfig.register( ModConfig.class, JanksonConfigSerializer::new );
+		BlockRegistry.register();
+		BlockEntityRegistry.register();
+		ItemRegistry.register();
+		EventListeners.register();
+		LOGGER.info( prefix("Enviromine Refurbished loaded!") );
 	}
 
-	@Environment(EnvType.CLIENT)
-	@Override
-	public void onInitializeClient() {
-		HudRenderCallback.EVENT.register( ( (matrixStack, tickDelta) -> OverlayRenderer.renderOverlays(MinecraftClient.getInstance(), matrixStack ) ) );
+	public static String prefix(String msg) {
+		return "[EMR] " + msg;
+	}
+
+	public static Identifier getID(String path) {
+		return new Identifier(MOD_ID, path);
 	}
 }

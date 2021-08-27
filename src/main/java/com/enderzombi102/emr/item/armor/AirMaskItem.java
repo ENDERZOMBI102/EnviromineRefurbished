@@ -2,9 +2,9 @@ package com.enderzombi102.emr.item.armor;
 
 import net.minecraft.entity.EquipmentSlot;
 
-public class ItemAirMask extends EnviroArmor {
+public class AirMaskItem extends EnviroArmor {
 
-	public ItemAirMask() {
+	public AirMaskItem() {
 		super( EquipmentSlot.HEAD, new Settings() );
 	}
 }

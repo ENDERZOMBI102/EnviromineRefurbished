@@ -6,7 +6,8 @@
 	"item.emr.camel_pack": "Camel Pack",
 	"item.emr.hard_hat": "Hard Hat",
 	"item.emr.rotten_food": "Rotten Food",
-	"item.emr.bad_water_bottle": "Dirty Water Bottle",
-	"item.emr.cold_water_bottle": "Cold Water Bottle",
-	"item.emr.salty_water_bottle": "Salty Water Bottle"
+	// water
+	"tooltip.emr.item.water_container.salty": "Salty",
+	"tooltip.emr.item.water_container.dirty": "Dirty",
+	"tooltip.emr.item.water_container.cold": "Cold"
 }

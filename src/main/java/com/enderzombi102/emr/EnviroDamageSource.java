@@ -26,7 +26,7 @@ public class EnviroDamageSource extends DamageSource {
 
 	@Override
 	public Text getDeathMessage(LivingEntity entity) {
-		if (! this.getName().equals("thething") ) {
+		if ( this != thething ) {
 			return new TranslatableText("deathmessage.emr." + this.getName(), entity.getDisplayName() );
 		}
 		return new LiteralText("");

@@ -9,9 +9,9 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemGasMask extends ArmorItem {
+public class GasMaskItem extends ArmorItem {
 
-	public ItemGasMask() {
+	public GasMaskItem() {
 		super(
 				Content.enviroMaterial,
 				EquipmentSlot.HEAD,

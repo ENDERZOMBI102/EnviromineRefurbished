@@ -8,6 +8,8 @@ import net.minecraft.sound.SoundEvents;
 
 public class EnviroMaterial implements ArmorMaterial {
 
+	public static final EnviroMaterial MATERIAL = new EnviroMaterial();
+
 	@Override
 	public int getDurability(EquipmentSlot slot) {
 		return 100;

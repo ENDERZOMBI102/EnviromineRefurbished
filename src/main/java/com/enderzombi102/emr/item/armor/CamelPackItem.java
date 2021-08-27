@@ -5,9 +5,9 @@ import com.enderzombi102.emr.EnviromineRefurbished;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 
-public class ItemCamelPack extends ArmorItem {
+public class CamelPackItem extends ArmorItem {
 
-	public ItemCamelPack() {
+	public CamelPackItem() {
 		super(
 				Content.enviroMaterial,
 				EquipmentSlot.CHEST,
