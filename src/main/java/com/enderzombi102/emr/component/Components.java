@@ -4,11 +4,15 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 
 import com.enderzombi102.emr.registry.EmrComponentRegistry;
+import dev.onyxstudios.cca.api.v3.item.ItemComponentFactoryRegistry;
+import dev.onyxstudios.cca.api.v3.item.ItemComponentInitializer;
+import net.minecraft.item.Items;
 
-public class Components implements EntityComponentInitializer {
+@SuppressWarnings("UnstableApiUsage")
+public class Components implements EntityComponentInitializer, ItemComponentInitializer {
 
 	@Override
-	@SuppressWarnings({"experimental", "UnstableApiUsage"})
+	@SuppressWarnings("experimental")
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
 		registry.registerForPlayers(
 				EmrComponentRegistry.PLAYER_DATA_TRACKER,
@@ -16,4 +20,12 @@ public class Components implements EntityComponentInitializer {
 		);
 	}
 
+	@Override
+	public void registerItemComponentFactories(ItemComponentFactoryRegistry registry) {
+		registry.register(
+				Items.WATER_BUCKET,
+				EmrComponentRegistry.WATER_BOTTLE_COMPONENT,
+				WaterBottleComponentImpl::new
+		);
+	}
 }

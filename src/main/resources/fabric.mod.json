@@ -19,11 +19,14 @@
 			"com.enderzombi102.emr.EnviromineRefurbished"
 		],
 		"client": [
-			"com.enderzombi102.emr.EnviromineRefurbished"
+			"com.enderzombi102.emr.EnviromineRefurbishedClient"
 		],
 		"modmenu": [ "com.enderzombi102.emr.config.ModMenu" ],
 		"cardinal-components-entity": [
-			"com.enderzombi102.emr.component.ComponentInizializer"
+			"com.enderzombi102.emr.component.Components"
+		],
+		"cardinal-components-item": [
+			"com.enderzombi102.emr.component.Components"
 		]
 	},
 	"mixins": [
@@ -35,7 +38,7 @@
 		]
 	},
 	"depends": {
-		"fabricloader": ">=0.11.3",
+		"fabricloader": ">=0.11.6",
 		"fabric": "*",
 		"minecraft": ">=1.17",
 		"cloth-config2": "${cc_version}",

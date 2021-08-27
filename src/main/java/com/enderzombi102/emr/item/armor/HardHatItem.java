@@ -1,6 +1,5 @@
 package com.enderzombi102.emr.item.armor;
 
-import com.enderzombi102.emr.Content;
 import com.enderzombi102.emr.EnviromineRefurbished;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
@@ -9,7 +8,7 @@ public class HardHatItem extends ArmorItem {
 
 	public HardHatItem() {
 		super(
-				Content.enviroMaterial,
+				EnviroMaterial.MATERIAL,
 				EquipmentSlot.HEAD,
 				new Settings().group(EnviromineRefurbished.EnviroTab).maxDamage(100)
 		);

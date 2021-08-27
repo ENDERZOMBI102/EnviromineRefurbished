@@ -1,4 +1,9 @@
 package com.enderzombi102.emr.component;
 
-public class WaterBottleComponentImpl implements WaterBottleComponent {
+import net.minecraft.item.ItemStack;
+
+public class WaterBottleComponentImpl extends WaterBottleComponent {
+	public WaterBottleComponentImpl(ItemStack stack) {
+		super(stack);
+	}
 }

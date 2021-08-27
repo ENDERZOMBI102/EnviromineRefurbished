@@ -1,6 +1,5 @@
 package com.enderzombi102.emr.registry;
 
-import com.enderzombi102.emr.Content;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

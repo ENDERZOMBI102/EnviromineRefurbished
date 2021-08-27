@@ -2,13 +2,13 @@
 	"required": true,
 	"minVersion": "0.8",
 	"package": "com.enderzombi102.emr.mixin",
-	"compatibilityLevel": "JAVA_8",
+	"compatibilityLevel": "JAVA_16",
 	"mixins": [
-		"InGameOverlayRendererMixin",
 		"PlayerManagerMixin",
 		"ServerPlayerEntityMixin"
 	],
 	"client": [
+		"ClientWorldMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
