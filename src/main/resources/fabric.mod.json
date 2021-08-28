@@ -34,7 +34,8 @@
 	],
 	"custom": {
 		"cardinal-components": [
-			"emr:component.playerdatatracker"
+			"emr:component.entity.playerdatatracker",
+			"emr:component.item.water_container"
 		]
 	},
 	"depends": {

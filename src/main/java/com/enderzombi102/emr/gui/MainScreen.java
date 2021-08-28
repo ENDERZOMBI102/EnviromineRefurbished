@@ -27,7 +27,7 @@ public class MainScreen extends Screen {
 						150,
 						20,
 						new TranslatableText("gui.gwwhit.config"),
-						(button) -> this.client.openScreen(
+						(button) -> this.client.setScreen(
 								AutoConfig.getConfigScreen(MainConfig.class, this).get()
 						)
 				)
@@ -49,7 +49,7 @@ public class MainScreen extends Screen {
 						200,
 						20,
 						ScreenTexts.DONE,
-						(button) -> client.openScreen(this.parent)
+						(button) -> client.setScreen(this.parent)
 				)
 		);
 	}

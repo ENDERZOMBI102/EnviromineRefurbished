@@ -25,7 +25,7 @@ public class PlayerDataTrackerImpl implements PlayerDataTracker {
 	}
 
 	@Override
-	public boolean shouldCopyForRespawn(boolean lossless, boolean keepInventory) {
+	public boolean shouldCopyForRespawn(boolean lossless, boolean keepInventory, boolean sameCharacter) {
 		return false;
 	}
 }

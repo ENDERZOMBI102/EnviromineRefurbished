@@ -24,8 +24,13 @@ public class Components implements EntityComponentInitializer, ItemComponentInit
 	public void registerItemComponentFactories(ItemComponentFactoryRegistry registry) {
 		registry.register(
 				Items.WATER_BUCKET,
-				EmrComponentRegistry.WATER_BOTTLE_COMPONENT,
-				WaterBottleComponentImpl::new
+				EmrComponentRegistry.WATER_CONTAINER_ITEM_COMPONENT,
+				WaterContainerItemComponentImpl::new
+		);
+		registry.register(
+				Items.POTION,
+				EmrComponentRegistry.WATER_CONTAINER_ITEM_COMPONENT,
+				WaterContainerItemComponentImpl::new
 		);
 	}
 }

@@ -4,6 +4,7 @@
 	"package": "com.enderzombi102.emr.mixin",
 	"compatibilityLevel": "JAVA_16",
 	"mixins": [
+		"ItemStackMixin",
 		"PlayerManagerMixin",
 		"ServerPlayerEntityMixin"
 	],

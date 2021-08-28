@@ -11,9 +11,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraft.text.Style;
+import net.minecraft.text.TextColor;
 import net.minecraft.text.TranslatableText;
 
-import java.util.Collections;
 
 import static com.enderzombi102.emr.util.Const.CONFIG_SYNC_ID;
 import static com.enderzombi102.emr.util.Const.MOD_VERSION;
@@ -58,13 +59,32 @@ public final class EventListeners {
 		);
 		ItemTooltipCallback.EVENT.register(
 				(stack, ctx, lines) -> {
-					if ( stack.getItem() == Items.WATER_BUCKET || stack.getItem() == Items.GLASS_BOTTLE ) {
-						Collections.addAll(
-								lines,
-								new TranslatableText("tooltip.emr.item.water_container.salty"),
-								new TranslatableText("tooltip.emr.item.water_container.dirty"),
+					if (
+							stack.getItem() == Items.WATER_BUCKET ||
+							(
+									stack.getItem() == Items.POTION &&
+									stack.getNbt() != null &&
+									stack.getNbt().getString("Potion").equals("minecraft:water")
+							)
+					) {
+						var comp = EmrComponentRegistry
+								.WATER_CONTAINER_ITEM_COMPONENT
+								.get( stack );
+						if ( comp.isSalty() )
+							lines.add(
+									new TranslatableText("tooltip.emr.item.water_container.salty")
+											.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )
+							);
+						if ( comp.isDirty() )
+							lines.add(
+									new TranslatableText("tooltip.emr.item.water_container.dirty")
+											.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )
+							);
+						if ( comp.isCold() )
+							lines.add(
 								new TranslatableText("tooltip.emr.item.water_container.cold")
-						);
+										.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )
+							);
 					}
 				}
 		);

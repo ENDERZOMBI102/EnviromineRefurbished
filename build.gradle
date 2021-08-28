@@ -26,6 +26,14 @@ repositories {
 		name = 'Gegy'
 		url = 'https://maven.gegy.dev'
 	}
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
+	maven {
+		name = 'gudenau\'s maven'
+		url = 'https://maven.gudenau.net'
+	}
 }
 
 dependencies {
@@ -54,8 +62,13 @@ dependencies {
 	modImplementation "dev.emi:trinkets:$trinkets_version"
 
 	// spruce ui
-	modImplementation "dev.lambdaurora:spruceui:$spruceui_version"
-	include "dev.lambdaurora:spruceui:$spruceui_version"
+	include modImplementation("dev.lambdaurora:spruceui:$spruceui_version")
+
+	// libgui
+	include modImplementation("io.github.cottonmc:LibGui:$libgui_version")
+
+	// more tags
+	include modImplementation("net.gudenau.minecraft:MoreTags:$moretags_version")
 
 	/* lib dependencies */
 
