@@ -4,6 +4,7 @@ import com.enderzombi102.emr.EnviromineRefurbished;
 import com.enderzombi102.emr.component.PlayerDataTrackerImpl;
 import com.enderzombi102.emr.config.ConfigManager;
 import com.enderzombi102.emr.config.data.MainConfig;
+import com.enderzombi102.emr.imixin.FoodRotItemStack;
 import com.google.gson.JsonSyntaxException;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -34,6 +35,7 @@ public final class EventListeners {
 		});
 	}
 
+	@SuppressWarnings("ConstantConditions")
 	public static void registerClient() {
 		ClientPlayNetworking.registerGlobalReceiver(
 				CONFIG_SYNC_ID,
@@ -59,6 +61,7 @@ public final class EventListeners {
 		);
 		ItemTooltipCallback.EVENT.register(
 				(stack, ctx, lines) -> {
+					// WATER MECHANICS
 					if (
 							stack.getItem() == Items.WATER_BUCKET ||
 							(
@@ -85,6 +88,14 @@ public final class EventListeners {
 								new TranslatableText("tooltip.emr.item.water_container.cold")
 										.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )
 							);
+					}
+					// FOOD MECHANICS
+					if ( ConfigManager.getLoadedConfig().rottingMechanic.enabled && stack.isFood() ) {
+						int percent = ( (FoodRotItemStack) (Object) stack ).emr$getRotPercentage();
+						lines.add(
+								new TranslatableText("tooltip.emr.item.rot_status", percent )
+										.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )
+						);
 					}
 				}
 		);
