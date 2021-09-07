@@ -1,5 +1,6 @@
 package com.enderzombi102.emr.component;
 
+import com.enderzombi102.emr.registry.ItemRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 
@@ -31,6 +32,11 @@ public class Components implements EntityComponentInitializer, ItemComponentInit
 				Items.POTION,
 				EmrComponentRegistry.WATER_CONTAINER_ITEM_COMPONENT,
 				WaterContainerItemComponentImpl::new
+		);
+		registry.register(
+				comp -> comp.isFood() && comp.asItem() != ItemRegistry.get("rotten_food"),
+				EmrComponentRegistry.FOOD_ITEM_COMPONENT,
+				FoodComponentImpl::new
 		);
 	}
 }

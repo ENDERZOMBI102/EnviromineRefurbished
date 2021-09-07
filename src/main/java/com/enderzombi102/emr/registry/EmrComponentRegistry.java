@@ -1,5 +1,6 @@
 package com.enderzombi102.emr.registry;
 
+import com.enderzombi102.emr.component.FoodComponentImpl;
 import com.enderzombi102.emr.component.PlayerDataTrackerImpl;
 import com.enderzombi102.emr.component.WaterContainerItemComponentImpl;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
@@ -20,6 +21,8 @@ public class EmrComponentRegistry {
 	);
 
 
-
-
+	public static final ComponentKey<FoodComponentImpl> FOOD_ITEM_COMPONENT = ComponentRegistry.getOrCreate(
+			getID("component.item.food_component"),
+			FoodComponentImpl.class
+	);
 }

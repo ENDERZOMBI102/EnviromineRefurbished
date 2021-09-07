@@ -5,6 +5,7 @@ import com.enderzombi102.emr.data.RotData;
 import com.enderzombi102.emr.imixin.FoodRotItemStack;
 import com.enderzombi102.emr.registry.ItemRegistry;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -44,6 +45,10 @@ public abstract class ItemStackMixin implements FoodRotItemStack {
 				this.getItem().isFood() &&
 				this.getItem() != ItemRegistry.get("rotten_food")
 		) {
+			if ( entity instanceof PlayerEntity player && player.isCreative() ) {
+				// creative player, are we in the creative or surv itemgroup?
+				
+			}
 			emr$rot(world);
 		}
 	}
