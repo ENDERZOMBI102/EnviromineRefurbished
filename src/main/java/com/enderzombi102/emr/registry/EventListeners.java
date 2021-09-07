@@ -10,6 +10,8 @@ import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.text.Style;
@@ -61,6 +63,7 @@ public final class EventListeners {
 		);
 		ItemTooltipCallback.EVENT.register(
 				(stack, ctx, lines) -> {
+					ClientWorld world = MinecraftClient.getInstance().world;
 					// WATER MECHANICS
 					if (
 							stack.getItem() == Items.WATER_BUCKET ||
@@ -90,8 +93,15 @@ public final class EventListeners {
 							);
 					}
 					// FOOD MECHANICS
-					if ( ConfigManager.getLoadedConfig().rottingMechanic.enabled && stack.isFood() ) {
-						int percent = ( (FoodRotItemStack) (Object) stack ).emr$getRotPercentage();
+					if (
+							ConfigManager.getLoadedConfig().rottingMechanic.enabled &&
+							world != null &&
+							stack.isFood() &&
+							stack.getItem() != ItemRegistry.get("rotten_food")
+					) {
+						int percent = ( (FoodRotItemStack) (Object) stack ).emr$getRotPercentage(
+								world
+						);
 						lines.add(
 								new TranslatableText("tooltip.emr.item.rot_status", percent )
 										.setStyle( Style.EMPTY.withColor( TextColor.parse("gray") ) )

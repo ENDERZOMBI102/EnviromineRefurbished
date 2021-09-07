@@ -10,5 +10,5 @@
 	"tooltip.emr.item.water_container.salty": "Salty",
 	"tooltip.emr.item.water_container.dirty": "Dirty",
 	"tooltip.emr.item.water_container.cold": "Cold",
-	"tooltip.emr.item.rot_status": "Rotten: {}%"
+	"tooltip.emr.item.rot_status": "Rotten: %d%%"
 }
