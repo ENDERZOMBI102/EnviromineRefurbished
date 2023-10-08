@@ -24,6 +24,19 @@ val loaderVersion = "0.21.0"
 val floaderVersion = "0.11.6"
 val apiVersion = "4.0.0-beta.30+0.76.0"
 
+/*
+TODO: Add the following:
+ - https://modrinth.com/mod/owo-lib ( evaluate )
+ - https://modrinth.com/mod/notify ( evaluate )
+ - https://modrinth.com/mod/emi
+ - https://modrinth.com/mod/fzzy-core ( evaluate )
+ - https://modrinth.com/mod/thermoo
+ - https://modrinth.com/mod/placeholder-api
+ - https://modrinth.com/mod/interference ( evaluate )
+ - https://modrinth.com/mod/resourceful-lib ( evaluate )
+ - https://modrinth.com/mod/patchouli
+ */
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft( "com.mojang:minecraft:$minecraftVersion" )
