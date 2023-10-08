@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "emr",
+	"id": "enviromr",
 	"name": "EnviroMine Refurbished",
 	"description": "Adds more realism to Minecraft with environmental effects, physics, gases and a cave dimension.",
 	"version": "${mod_version}",
@@ -11,32 +11,32 @@
 		"sources": "https://github.com/ENDERZOMBI102/EnviromineRefourbished",
 		"issues": "https://github.com/ENDERZOMBI102/EnviromineRefourbished/issues"
 	},
-	"license": "MIT",
+	"license": "MPL2",
 	"icon": "assets/emr/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.enderzombi102.emr.EnviromineRefurbished"
+			"com.enderzombi102.enviro.EnviromineRefurbished"
 		],
 		"client": [
-			"com.enderzombi102.emr.EnviromineRefurbishedClient"
+			"com.enderzombi102.enviro.EnviromineRefurbishedClient"
 		],
-		"modmenu": [ "com.enderzombi102.emr.config.ModMenu" ],
+		"modmenu": [ "com.enderzombi102.enviro.config.ModMenu" ],
 		"cardinal-components-entity": [
-			"com.enderzombi102.emr.component.Components"
+			"com.enderzombi102.enviro.component.Components"
 		],
 		"cardinal-components-item": [
-			"com.enderzombi102.emr.component.Components"
+			"com.enderzombi102.enviro.component.Components"
 		]
 	},
 	"mixins": [
-		"emr.mixins.json"
+		"enviromr.mixins.json"
 	],
 	"custom": {
 		"cardinal-components": [
-			"emr:component.entity.playerdatatracker",
-			"emr:component.item.water_container",
-			"emr:component.item.food_component"
+			"enviro:component.entity.playerdatatracker",
+			"enviro:component.item.water_container",
+			"enviro:component.item.food_component"
 		]
 	},
 	"depends": {
