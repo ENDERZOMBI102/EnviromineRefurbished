@@ -6,7 +6,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.enderzombi102.enviro.EnviromineRefurbished.getID;
+import static com.enderzombi102.enviro.EnviromineRefurbished.getId;
 
 public class BlockRegistry {
 
@@ -18,7 +18,7 @@ public class BlockRegistry {
 		for ( Map.Entry<String, Block> entry : BLOCKS.entrySet() ) {
 			Registry.register(
 					Registry.BLOCK,
-					getID( entry.getKey() ),
+					getId( entry.getKey() ),
 					entry.getValue()
 			);
 		}

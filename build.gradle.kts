@@ -8,14 +8,19 @@ plugins {
 repositories {
 	mavenCentral()
 	maven( url = "https://server.bbkr.space/artifactory/libs-release" )
-	maven( url = "https://maven.ladysnake.org/releases" )
 	maven( url = "https://maven.terraformersmc.com/releases" )
 	maven( url = "https://repsy.io/mvn/enderzombi102/mc" )
+	maven( url = "https://maven.ladysnake.org/releases" )
 	maven( url = "https://aperlambda.github.io/maven" )
+	maven( url = "https://maven.nucleoid.xyz/" )
 	maven( url = "https://maven.shedaniel.me" )
 	maven( url = "https://maven.gudenau.net" )
 	maven( url = "https://maven.gegy.dev" )
 	maven( url = "https://jitpack.io" )
+	exclusiveContent {
+		forRepository { maven( url = "https://api.modrinth.com/maven" ) }
+		filter { includeGroup( "maven.modrinth" ) }
+	}
 }
 
 val minecraftVersion = "1.19.2"
@@ -24,17 +29,34 @@ val loaderVersion = "0.21.0"
 val floaderVersion = "0.11.6"
 val apiVersion = "4.0.0-beta.30+0.76.0"
 
+loom {
+	runtimeOnlyLog4j.set( true )
+
+	val config: net.fabricmc.loom.configuration.ide.RunConfigSettings.() -> Unit = {
+		runDir = "run"
+		isIdeConfigGenerated = true
+//		vmArg( "-javaagent:\"$mixinsJar\"" )
+		vmArg( "-XX:+AllowEnhancedClassRedefinition" )
+		vmArg( "-Xmx3G" )
+		vmArg( "-ea:com.enderzombi102.elysium" )
+		vmArg( "-Dmixin.debug.export=true" )
+		vmArg( "-Dlog4j.configurationFile=\"file:///$projectDir/log4j2.xml\"" )
+		vmArg( "-Dloader.disable_forked_guis=true" )
+		vmArg( "-Dloader.transform_cache.disable_preload=true" )
+		vmArg( "-Dloader.transform_cache.disable_optimised_compression=true" )
+		programArg( "--username=player" )
+	}
+	runConfigs.named( "client" ).configure( config )
+	runConfigs.named( "server" ).configure( config )
+}
+
 /*
 TODO: Add the following:
  - https://modrinth.com/mod/owo-lib ( evaluate )
  - https://modrinth.com/mod/notify ( evaluate )
- - https://modrinth.com/mod/emi
  - https://modrinth.com/mod/fzzy-core ( evaluate )
- - https://modrinth.com/mod/thermoo
- - https://modrinth.com/mod/placeholder-api
  - https://modrinth.com/mod/interference ( evaluate )
  - https://modrinth.com/mod/resourceful-lib ( evaluate )
- - https://modrinth.com/mod/patchouli
  */
 
 dependencies {
@@ -47,29 +69,23 @@ dependencies {
 	modImplementation( "org.quiltmc.quilted-fabric-api:quilted-fabric-api:$apiVersion-$minecraftVersion" )
 	
 	/* mod dependencies */
-	
-	// config
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.ext["clothconfig_version"]}") {
-		exclude(group="net.fabricmc.fabric-api")
-	}
+	modImplementation( "com.terraformersmc:modmenu:4.2.0-beta.2" )
+	modImplementation( "dev.onyxstudios.cardinal-components-api:cardinal-components-api:5.0.2" )
+	modImplementation( "dev.emi:trinkets:3.4.1" ) // https://github.com/emilyploszaj/trinkets/wiki
+	modImplementation( include( "dev.lambdaurora:spruceui:4.1.0+1.19.2" )!! ) // N/D
+	modImplementation( include( "io.github.cottonmc:LibGui:6.4.0+1.19" )!! ) // https://github.com/CottonMC/LibGui/wiki
 
-	// modmenu
-	modImplementation( "com.terraformersmc:modmenu:${project.ext["modmenu_version"]}" )
+	modCompileOnly( "dev.emi:emi-fabric:1.0.21+1.19.2:api" ) // https://github.com/emilyploszaj/emi/wiki
+	modLocalRuntime( "dev.emi:emi-fabric:1.0.21+1.19.2" )
 
-	// cardinal components
-	modImplementation( "io.github.onyxstudios:Cardinal-Components-API:${project.ext["cca_version"]}" )
+	modImplementation( include( "com.github.thedeathlycow:thermoo:v1.4" )!! ) // https://github.com/TheDeathlyCow/thermoo/wiki
+	modImplementation( "maven.modrinth:patchouli:1.19.2-77-fabric" ) // https://vazkiimods.github.io/Patchouli
+	modImplementation( include( "eu.pb4:placeholder-api:2.0.0-pre.1+1.19.2" )!! ) // https://placeholders.pb4.eu
 
-	// trinkes
-	modImplementation( "dev.emi:trinkets:${project.ext["trinkets_version"]}" )
-
-	// spruce ui
-	include( modImplementation("dev.lambdaurora:spruceui:${project.ext["spruceui_version"]}")!! )
-
-	// libgui
-	include( modImplementation("io.github.cottonmc:LibGui:${project.ext["libgui_version"]}")!! )
+	modImplementation( include( "com.enderzombi102.EnderLib:minecraft:1.0.0+0.3.3-SNAPSHOT" )!! )
 
 	/* lib dependencies */
-
+	implementation( include( annotationProcessor( "io.github.llamalad7:mixinextras-fabric:0.2.0" )!! )!! ) // https://github.com/LlamaLad7/MixinExtras/wiki
 }
 
 tasks.withType<ProcessResources> {
@@ -99,7 +115,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 java {
 	withSourcesJar()
-	toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+	toolchain.languageVersion.set( JavaLanguageVersion.of( 17 ) )
 }
 
 tasks.withType<Jar> {

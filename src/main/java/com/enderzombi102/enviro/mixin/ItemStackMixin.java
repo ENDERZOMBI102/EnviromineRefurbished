@@ -1,5 +1,6 @@
 package com.enderzombi102.enviro.mixin;
 
+import com.enderzombi102.enviro.config.Config;
 import com.enderzombi102.enviro.config.ConfigManager;
 import com.enderzombi102.enviro.data.RotData;
 import com.enderzombi102.enviro.imixin.FoodRotItemStack;
@@ -23,9 +24,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @SuppressWarnings("DeprecatedIsStillUsed")
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin implements FoodRotItemStack {
-
 	@Unique
-	private long rotSpawnTime = 0;
+
 
 	@Shadow
 	public abstract Item getItem();
@@ -40,11 +40,10 @@ public abstract class ItemStackMixin implements FoodRotItemStack {
 
 	@Inject( method = "inventoryTick", at = @At("HEAD") )
 	public void onInventoryTick(World world, Entity entity, int slot, boolean selected, CallbackInfo ci) {
-		if (
-				ConfigManager.getLoadedConfig().rottingMechanic.enabled &&
-				this.getItem().isFood() &&
-				this.getItem() != ItemRegistry.get("rotten_food")
-		) {
+		if (! Config.get().rottingMechanic.enabled )
+			return;
+
+		if ( this.getItem().isFood() && this.getItem() != ItemRegistry.get( "rotten_food" ) ) {
 			if ( entity instanceof PlayerEntity player && player.isCreative() ) {
 				// creative player, are we in the creative or surv itemgroup?
 				
@@ -66,32 +65,5 @@ public abstract class ItemStackMixin implements FoodRotItemStack {
 			nbt.putLong( "EMR_ROT_SPAWN_TIME", rotSpawnTime );
 	}
 
-	@Override
-	public int emr$getRotPercentage(World world) {
-		return ( emr$getRequiredDaysToRot() % 100  ) * emr$getDaysPassed(world);
-	}
-
-	@Override
-	public void emr$rot(World world) {
-		if ( ( world.getTime() - rotSpawnTime ) > emr$getRequiredDaysToRot() * 24000L ) {
-			// its rotten
-			this.item = ItemRegistry.get("rotten_food");
-		}
-	}
-
-	@Override
-	public int emr$getDaysPassed(World world) {
-		return (int) ( ( world.getTime() - rotSpawnTime ) / 24000L );
-	}
-
-	@Override
-	public int emr$getRemainingDays(World world) {
-		return emr$getDaysPassed(world) > emr$getRequiredDaysToRot() ? 0 : emr$getDaysPassed(world) - emr$getRequiredDaysToRot();
-	}
-
-	@Override
-	public int emr$getRequiredDaysToRot() {
-		return RotData.getRequiredDaysToRot( getItem() );
-	}
 
 }

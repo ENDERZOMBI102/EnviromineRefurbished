@@ -3,7 +3,7 @@ package com.enderzombi102.enviro.registry;
 import com.enderzombi102.enviro.EnviromineRefurbished;
 import com.enderzombi102.enviro.component.PlayerDataTrackerImpl;
 import com.enderzombi102.enviro.config.ConfigManager;
-import com.enderzombi102.enviro.config.data.MainConfig;
+import com.enderzombi102.enviro.config.data.ConfigData;
 import com.enderzombi102.enviro.imixin.FoodRotItemStack;
 import com.google.gson.JsonSyntaxException;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
@@ -30,7 +30,7 @@ public final class EventListeners {
 		ServerEntityEvents.ENTITY_LOAD.register( (entity, serverWorld) -> {
 			if (entity instanceof PlayerEntity) {
 				ComponentRegistry.getOrCreate(
-						EmrComponentRegistry.PLAYER_DATA_TRACKER.getId(),
+						CompRegistry.PLAYER_DATA_TRACKER.getId(),
 						PlayerDataTrackerImpl.class
 				);
 			}
@@ -42,10 +42,10 @@ public final class EventListeners {
 		ClientPlayNetworking.registerGlobalReceiver(
 				CONFIG_SYNC_ID,
 				(client, networkHandler, data, sender) -> {
-					MainConfig config = null;
+					ConfigData config = null;
 					try {
 						if ( MOD_VERSION.equals( data.readString() ) )
-							config = ConfigManager.CONFIG_GSON.fromJson(data.readString(), MainConfig.class);
+							config = ConfigManager.CONFIG_GSON.fromJson(data.readString(), ConfigData.class);
 					} catch (JsonSyntaxException e) {
 						EnviromineRefurbished.LOGGER.error("Can't parse config!", e);
 					}
@@ -54,7 +54,7 @@ public final class EventListeners {
 								"Failed to load synced config, falling back to local config!"
 						);
 
-					MainConfig finalConfig = config;
+					ConfigData finalConfig = config;
 					client.execute(() -> {
 						ConfigManager.loadConfig(finalConfig);
 						ConfigManager.onLoad();
@@ -73,7 +73,7 @@ public final class EventListeners {
 									stack.getNbt().getString("Potion").equals("minecraft:water")
 							)
 					) {
-						var comp = EmrComponentRegistry
+						var comp = CompRegistry
 								.WATER_CONTAINER_ITEM_COMPONENT
 								.get( stack );
 						if ( comp.isSalty() )

@@ -4,15 +4,13 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.util.Identifier;
-
-import static com.enderzombi102.enviro.EnviromineRefurbished.getID;
+import org.jetbrains.annotations.NotNull;
 
 public final class Const {
 	private Const() {}
 
 	public static final String MOD_NAME = "Enviromine Refurbished";
 	public static final String MOD_ID = "enviromr";
-	public static final Identifier CONFIG_SYNC_ID = getID("config_sync");
 	public static final String MOD_VERSION = getMetadata()
 			.getVersion()
 			.getFriendlyString();
@@ -25,5 +23,9 @@ public final class Const {
 
 	private static ModMetadata getMetadata() {
 		return getContainer().getMetadata();
+	}
+
+	public static Identifier getId( @NotNull String path ) {
+		return new Identifier( MOD_ID, path );
 	}
 }

@@ -23,10 +23,10 @@
 		],
 		"modmenu": [ "com.enderzombi102.enviro.config.ModMenu" ],
 		"cardinal-components-entity": [
-			"com.enderzombi102.enviro.component.Components"
+            "com.enderzombi102.enviro.component.ComponentInitializer"
 		],
 		"cardinal-components-item": [
-			"com.enderzombi102.enviro.component.Components"
+            "com.enderzombi102.enviro.component.ComponentInitializer"
 		]
 	},
 	"mixins": [
